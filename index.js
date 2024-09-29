@@ -2,6 +2,17 @@ const express = require('express')
 const app = express()
 const students = require('./students')
 
+const myDate = (req, res, next) => {
+    console.log(new Date())
+    next()
+}
+
+const myLog = (req, res, next) => {
+    console.log("My log!")
+}
+
+app.use(myDate)
+
 app.route('/')
     .get((req, res) => {
         res.send('Get method!')
@@ -15,6 +26,8 @@ app.route('/')
     .delete((req, res) => {
         res.send('Delete method!')
     })
+
+app.use(myLog)
 
 app.use('/student', students)
 
