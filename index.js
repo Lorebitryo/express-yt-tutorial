@@ -3,6 +3,7 @@ const app = express()
 const students = require('./students')
 
 const myDate = (req, res, next) => {
+    req.date = new Date()
     console.log(new Date())
     next()
 }
@@ -15,7 +16,7 @@ app.use(myDate)
 
 app.route('/')
     .get((req, res) => {
-        res.send('Get method!')
+        res.send('Get method!' + req.date)
     })
     .post((req, res) => {
         res.send('Post method!')
