@@ -12,9 +12,9 @@ const myLog = (req, res, next) => {
     console.log("My log!")
 }
 
-app.use(myDate)
+app.get('/example', myDate)
 
-app.route('/')
+app.route('/example')
     .get((req, res) => {
         res.send('Get method!' + req.date)
     })
