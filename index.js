@@ -1,6 +1,18 @@
 const express = require('express')
 const app = express()
 const students = require('./students')
+const pgp = require('pg-promise')(/* options */)
+const db = pgp('postgres://postgres:postgres@localhost:5432/test')
+
+db.result('SELECT * from newtable')
+  .then((data) => {
+    console.log('DATA:', data)
+  })
+  .catch((error) => {
+    console.log('ERROR:', error)
+  })
+
+
 
 const myDate = (req, res, next) => {
     req.date = new Date()
